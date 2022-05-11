@@ -1,0 +1,5 @@
+{
+  "getauth":"https://apimbu.mercantilbanco.com/mercantil-banco/sandbox/v1/payment/getauth",
+  "pay":"https://apimbu.mercantilbanco.com/mercantil-banco/sandbox/v1/payment/pay",
+  "search":"https://apimbu.mercantilbanco.com/mercantil-banco/sandbox/v1/payment/search"
+}
