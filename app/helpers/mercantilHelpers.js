@@ -1,15 +1,21 @@
 
-const crypto = require('./crypto')
+const {crypto} = require('./crypto')
+const clave = process.env.MCLAVECIFRADO;
+const hashKey = crypto.hashKEY(clave,'binary');
+const binaryHK_16 = hashKey.slice(0, 16);
 
 exports.getEncrypt = (val) => {
-  const clave = process.env.MCLAVECIFRADO,
-  hashKey = crypto.hashKEY(clave),
-  binaryHK_16 = hashKey.slice(0, 16),
-  encryptcvv = crypto.encrypted(binaryHK_16,val)
-  return encryptcvv
+  const encryptcvv = crypto.encrypt(binaryHK_16,'binary', '',val);
+  return encryptcvv;
+}
+
+exports.getdecrypt = (val) => {
+  const descrypt = crypto.decrypt(binaryHK_16,'binary', '', val)
+  return descrypt
 }
 
 exports.getBodyAuth = (params) => {
+
   const data = {
     "merchant_identify": {
       "integratorId": 1,
@@ -49,9 +55,9 @@ exports.getBodyPayTDD = (params) => {
       "customer_id": params.customer_id,
       "invoice_number": params.invoice_number,
       "account_type": params.account_type,
-      "twofactor_auth": params.twofactor_auth,
+      "twofactor_auth": params.claveEncrypted,
       "expiration_date": params.expiration_date,
-      "cvv": params.cvv,
+      "cvv": params.cvvEncrypted,
       "currency": "ves",
       "amount": params.amount
     }

@@ -4,7 +4,7 @@ const {auth, pay} = require('../controllers/payController.js');
 const {verification} = require('../middleware/token.js')
 
   router
-    .route('/test')
+    .route('/cardPay')
     .post(verification, auth, pay)
 
 
