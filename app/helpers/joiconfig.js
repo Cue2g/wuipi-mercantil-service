@@ -12,5 +12,5 @@ exports.schemaPay =
     browser_agent: Joi.string().required(),
     ipaddress: Joi.string().required(),
     payment_method: Joi.string().required(),
-    clave: Joi.string()
+    clave: Joi.string().required()
   })
